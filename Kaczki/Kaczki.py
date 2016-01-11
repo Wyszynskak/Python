@@ -86,7 +86,7 @@ class MainWin(QtGui.QMainWindow):
     def newGame(self):
         self.pause()
         reply = QtGui.QMessageBox.question(self, 'Message',
-        "Are you sure you want to restatr your game?", QtGui.QMessageBox.Yes | 
+        "Are you sure you want to restart your game?", QtGui.QMessageBox.Yes | 
         QtGui.QMessageBox.No, QtGui.QMessageBox.No)
 
         if reply == QtGui.QMessageBox.Yes:
@@ -156,6 +156,8 @@ class MainWin(QtGui.QMainWindow):
     def changeParameters(self, duck_speed, sigh_move):
         self.tboard.changeSpeed(duck_speed, sigh_move)
         self.tboard.newGame()
+    def getParameters(self):
+        return (self.tboard.duck_alive_speed, self.tboard.sigh_move)
             
 class Options(QtGui.QDialog):
     duck_move=0
@@ -173,22 +175,24 @@ class Options(QtGui.QDialog):
         self.sigh_move_sld.valueChanged[int].connect(self.changeSighMove)
         self.sigh_move_sld.setMinimum(5)
         self.sigh_move_sld.setMaximum(50)
+        self.sigh_move_sld.setValue(self.parent().getParameters()[1])
         
         self.sigh_move_lbl = QtGui.QLabel(self)
         self.sigh_move_lbl.setText("Przesuniecie celownika: " + str(
-            self.sigh_move_sld.tickPosition()))
+            self.sigh_move_sld.value()))
         
         #Przesunięcie kaczki
         self.duck_move_sld = QtGui.QSlider(QtCore.Qt.Horizontal, self)
         self.duck_move_sld.setFocusPolicy(QtCore.Qt.NoFocus)
         self.duck_move_sld.resize(100, 30)
         self.duck_move_sld.valueChanged[int].connect(self.changeDuckMove)
-        self.sigh_move_sld.setMinimum(5)
-        self.sigh_move_sld.setMaximum(50)
+        self.duck_move_sld.setMinimum(5)
+        self.duck_move_sld.setMaximum(40)
+        self.duck_move_sld.setValue(self.parent().getParameters()[0])
         
         self.duck_move_lbl = QtGui.QLabel(self)
         self.duck_move_lbl.setText("Przesuniecie kaczki: " + str(
-            self.duck_move_sld.tickPosition()))
+            self.duck_move_sld.value()))
         
         #Przerwanie zmian
         cancel_button = QtGui.QPushButton('Cancel', self)
