@@ -1,0 +1,20 @@
+Witaj w grze KACZKI!
+
+Masz ochotę postrzelać? To świetnie!
+Ustrzel zatem tyle kaczek ile zdołasz!
+
+Cel gry:
+Zestrzelić jak najwięcej kaczek zachowując przynajmniej 
+jedno życie.
+
+Sterowanie:
+Strzałki - ruch celownika 
+D - strzał
+N - nowa gra
+O - opcje
+Esc - Exit
+
+Uwaga!
+Ze względu na specyfikację biblioteki, w której tworzona była gra celownik porusza się tylko w jednym kierunku jednocześnie - góra, dół, prawo, lewo - nie ma możliwości poruszania się po skosie, co dodatkowo utrudnia grę.
+Opis problemu:
+http://stackoverflow.com/questions/14159318/pyqt4-holding-down-a-key-detected-as-frequent-press-and-release
